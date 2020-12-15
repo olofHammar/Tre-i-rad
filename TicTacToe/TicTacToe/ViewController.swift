@@ -35,7 +35,7 @@ class ViewController: UIViewController {
         
         if playersTurn == "X" {
             sender.setTitle("X", for: .normal)
-            sender.setTitleColor(.systemBlue, for: .normal)
+            sender.setTitleColor(.black, for: .normal)
             let position = Int(sender.tag)
             gameBoard[position-1] = 1
             sender.isEnabled = false
@@ -48,7 +48,7 @@ class ViewController: UIViewController {
         }
         else {
             sender.setTitle("O", for: .normal)
-            sender.setTitleColor(.red, for: .normal)
+            sender.setTitleColor(.systemRed, for: .normal)
             let position = Int(sender.tag)
             gameBoard[position-1] = 2
             sender.isEnabled = false
