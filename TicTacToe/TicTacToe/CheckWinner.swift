@@ -13,10 +13,13 @@ class CheckWinner {
     
     init(winner: Int) {
         self.winner = winner
+
     }
     
     func checkForWinningCombination (board: Array<Int>) -> Int {
         
+        var gameIsActive = true
+        winner = 0
         let winningCombos = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]]
 
         for combo in winningCombos {
@@ -25,11 +28,26 @@ class CheckWinner {
                 
                 if board[combo[0]] == 1 {
                     winner = 1
+                    return self.winner
                 }
                 else {
                     winner = 2
+                    return self.winner
                 }
             }
+        }
+        
+        gameIsActive = false
+        
+        for nr in board {
+            if nr == 0 {
+                gameIsActive = true
+                break
+            }
+        }
+        
+        if gameIsActive == false {
+            winner = 3
         }
         
         return self.winner

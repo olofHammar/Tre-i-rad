@@ -30,29 +30,23 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
+            }
     
     @IBAction func buttonSelectedSquare(_ sender: UIButton) {
        
         if gameBoard[sender.tag] == 0 && gameIsActive == true {
-        
+        print(gameBoard)
         if playersTurn == "X" {
             sender.setTitle("X", for: .normal)
             sender.setTitleColor(.black, for: .normal)
             gameBoard[sender.tag] = 1
-            //sender.isEnabled = false
-            //if gameBoard.contains(0){
             playersTurn = "O"
-            //}
         }
         else {
             sender.setTitle("O", for: .normal)
             sender.setTitleColor(.systemRed, for: .normal)
             gameBoard[sender.tag] = 2
-            //sender.isEnabled = false
-            //if gameBoard.contains(0) {
             playersTurn = "X"
-            //}
         }
         }
         checkWinner.checkForWinningCombination(board: gameBoard)
@@ -64,24 +58,29 @@ class ViewController: UIViewController {
             gameIsActive = false
             gameLabel.text = "O has won!"
         }
-        /*
-        for combo in winningCombos {
-            if gameBoard[combo[0]] != 0 && gameBoard[combo[0]] == gameBoard[combo[1]] &&
-                gameBoard[combo[1]] == gameBoard[combo[2]] {
-                
-                gameIsActive = false
-                if gameBoard[combo[0]] == 1 {
-                    gameLabel.text = "X has won!"
-                }
-                else {
-                    gameLabel.text = "O has won!"
-                }
-                
-            }
+        else if checkWinner.winner == 3 {
+            gameIsActive = false
+            gameLabel.text = "The game is a tie."
         }
- */
-        
     }
+    
+    @IBAction func resetGameBoardButtonPressed(_ sender: Any) {
+        
+        gameBoard =  [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        gameIsActive = true
+        squareOne.setTitle("", for: .normal)
+        squareTwo.setTitle("", for: .normal)
+        squareThree.setTitle("", for: .normal)
+        squareFour.setTitle("", for: .normal)
+        squareFive.setTitle("", for: .normal)
+        squareSix.setTitle("", for: .normal)
+        squareSeven.setTitle("", for: .normal)
+        squareEight.setTitle("", for: .normal)
+        squareNine.setTitle("", for: .normal)
+        gameLabel.text?.removeAll()
+        playersTurn = "X"
+    }
+    
     }
 
 
