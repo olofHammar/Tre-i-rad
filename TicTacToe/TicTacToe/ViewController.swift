@@ -21,12 +21,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var gameLabel: UILabel!
     
     //Denna variabel berättar vilken spelares tur det är.
-    let checkWinner = CheckWinner(winner: 0)
-    var gameIsActive = true
+    let gamePlay = CheckWinner()
+    //var gameIsActive = true
     var playersTurn = "X"
     var playerOneVictorys = 0
     var playerTwoVictorys = 0
-    var gameBoard = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    //var gameBoard = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,40 +34,42 @@ class ViewController: UIViewController {
     
     @IBAction func buttonSelectedSquare(_ sender: UIButton) {
        
-        if gameBoard[sender.tag] == 0 && gameIsActive == true {
-        print(gameBoard)
+        if gamePlay.gameBoard[sender.tag] == 0 && gamePlay.gameIsActive == true {
+            print(gamePlay.gameBoard)
         if playersTurn == "X" {
             sender.setTitle("X", for: .normal)
             sender.setTitleColor(.black, for: .normal)
-            gameBoard[sender.tag] = 1
+            gamePlay.updateGameboard(i: sender.tag, player: 1)
+            //[sender.tag] = 1
             playersTurn = "O"
         }
         else {
             sender.setTitle("O", for: .normal)
             sender.setTitleColor(.systemRed, for: .normal)
-            gameBoard[sender.tag] = 2
+            gamePlay.updateGameboard(i: sender.tag, player: 2)
+            //[sender.tag] = 2
             playersTurn = "X"
         }
         }
-        checkWinner.checkForWinningCombination(board: gameBoard)
-        if checkWinner.winner == 1 {
-            gameIsActive = false
+        gamePlay.checkForWinningCombination()
+        if gamePlay.winner == 1 {
+            gamePlay.gameIsActive = false
             gameLabel.text = "X has won!"
         }
-        else if checkWinner.winner == 2 {
-            gameIsActive = false
+        else if gamePlay.winner == 2 {
+            gamePlay.gameIsActive = false
             gameLabel.text = "O has won!"
         }
-        else if checkWinner.winner == 3 {
-            gameIsActive = false
+        else if gamePlay.winner == 3 {
+            gamePlay.gameIsActive = false
             gameLabel.text = "The game is a tie."
         }
     }
     
     @IBAction func resetGameBoardButtonPressed(_ sender: Any) {
         
-        gameBoard =  [0, 0, 0, 0, 0, 0, 0, 0, 0]
-        gameIsActive = true
+        gamePlay.resetGameBoard()
+        gamePlay.gameIsActive = true
         squareOne.setTitle("", for: .normal)
         squareTwo.setTitle("", for: .normal)
         squareThree.setTitle("", for: .normal)
