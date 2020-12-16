@@ -12,11 +12,13 @@ class CheckWinner {
     var winner: Int
     var gameBoard: Array<Int>
     var gameIsActive: Bool
+    var playersTurn: String
     
     init() {
         self.winner = 0
         self.gameBoard = [0,0,0,0,0,0,0,0,0]
         self.gameIsActive = true
+        self.playersTurn = "X"
     }
     
     func updateGameboard(i: Int, player: Int) {
