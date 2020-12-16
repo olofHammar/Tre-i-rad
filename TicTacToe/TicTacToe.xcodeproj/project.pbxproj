@@ -15,6 +15,7 @@
 		E477718A2588E4BA00417E66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E47771882588E4BA00417E66 /* LaunchScreen.storyboard */; };
 		E47771952588E4BA00417E66 /* TicTacToeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47771942588E4BA00417E66 /* TicTacToeTests.swift */; };
 		E47771A02588E4BA00417E66 /* TicTacToeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E477719F2588E4BA00417E66 /* TicTacToeUITests.swift */; };
+		E4EED4E6258A3C4B009989DD /* CheckWinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EED4E5258A3C4B009989DD /* CheckWinner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		E477719B2588E4BA00417E66 /* TicTacToeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TicTacToeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E477719F2588E4BA00417E66 /* TicTacToeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeUITests.swift; sourceTree = "<group>"; };
 		E47771A12588E4BA00417E66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E4EED4E5258A3C4B009989DD /* CheckWinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckWinner.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				E47771862588E4BA00417E66 /* Assets.xcassets */,
 				E47771882588E4BA00417E66 /* LaunchScreen.storyboard */,
 				E477718B2588E4BA00417E66 /* Info.plist */,
+				E4EED4E5258A3C4B009989DD /* CheckWinner.swift */,
 			);
 			path = TicTacToe;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E47771822588E4B900417E66 /* ViewController.swift in Sources */,
+				E4EED4E6258A3C4B009989DD /* CheckWinner.swift in Sources */,
 				E477717E2588E4B800417E66 /* AppDelegate.swift in Sources */,
 				E47771802588E4B800417E66 /* SceneDelegate.swift in Sources */,
 			);
