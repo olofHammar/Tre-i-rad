@@ -30,7 +30,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
+            }
     
     @IBAction func buttonSelectedSquare(_ sender: UIButton) {
        
