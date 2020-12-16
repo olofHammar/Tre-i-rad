@@ -20,13 +20,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var squareNine: UIButton!
     @IBOutlet weak var gameLabel: UILabel!
     
-    //Denna variabel berättar vilken spelares tur det är.
     let gamePlay = CheckWinner()
-    //var gameIsActive = true
-    //var playersTurn = "X"
     var playerOneVictorys = 0
     var playerTwoVictorys = 0
-    //var gameBoard = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,26 +36,29 @@ class ViewController: UIViewController {
             sender.setTitle("X", for: .normal)
             sender.setTitleColor(.black, for: .normal)
             gamePlay.updateGameboard(i: sender.tag, player: 1)
-            //[sender.tag] = 1
-                gamePlay.playersTurn = "O"
+            gamePlay.playersTurn = "O"
         }
+            
         else {
             sender.setTitle("O", for: .normal)
             sender.setTitleColor(.systemRed, for: .normal)
             gamePlay.updateGameboard(i: sender.tag, player: 2)
-            //[sender.tag] = 2
             gamePlay.playersTurn = "X"
         }
         }
+        
         gamePlay.checkForWinningCombination()
+        
         if gamePlay.winner == 1 {
             gamePlay.gameIsActive = false
             gameLabel.text = "X has won!"
         }
+        
         else if gamePlay.winner == 2 {
             gamePlay.gameIsActive = false
             gameLabel.text = "O has won!"
         }
+        
         else if gamePlay.winner == 3 {
             gamePlay.gameIsActive = false
             gameLabel.text = "The game is a tie."

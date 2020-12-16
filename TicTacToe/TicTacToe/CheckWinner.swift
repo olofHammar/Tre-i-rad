@@ -15,6 +15,7 @@ class CheckWinner {
     var playersTurn: String
     
     init() {
+        
         self.winner = 0
         self.gameBoard = [0,0,0,0,0,0,0,0,0]
         self.gameIsActive = true
