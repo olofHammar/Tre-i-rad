@@ -29,15 +29,18 @@ class ViewController: UIViewController {
     @IBOutlet weak var playerXNameLabel: UILabel!
     @IBOutlet weak var ResetScoreBarItem: UIBarButtonItem!
     @IBOutlet weak var StartNewGameBarItem: UIBarButtonItem!
-
+    @IBOutlet weak var changePlayerModeButton: UIButton!
     let gamePlay = CheckWinner()
     let playerX = Player()
     let playerO = Player()
+    var aiDeciding = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        addBorder(view: playerOneUserView)
-        addBorder(view: playerTwoUserView)
+        
+        addBorderToView(view: playerOneUserView)
+        addBorderToView(view: playerTwoUserView)
+        addBorderToLabel(view: gameLabel)
         resetGameButton.layer.cornerRadius = 15
         playVsComputer.layer.cornerRadius = 15
         gameLabel.isHidden = true
@@ -50,14 +53,27 @@ class ViewController: UIViewController {
             if gamePlay.playersTurn == "X" {
             sender.setTitle("X", for: .normal)
             gamePlay.updateGameboard(i: sender.tag, player: 1)
-            gamePlay.playersTurn = "O"
-        }
+            
+                if aiDeciding == true {
+                    _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [self]_ in
+                      
+                        self.squareOne.setTitle("O", for: .normal)
+                        gamePlay.updateGameboard(i: squareOne.tag, player: 2)
+                        gamePlay.playersTurn = "X"
+                       }
+                }
+                else {
+                    gamePlay.playersTurn = "O"
+                }
+            }
             
         else {
+        
             sender.setTitle("O", for: .normal)
             gamePlay.updateGameboard(i: sender.tag, player: 2)
             gamePlay.playersTurn = "X"
-        }
+            
+            }
         }
         
         gamePlay.checkForWinningCombination()
@@ -65,7 +81,7 @@ class ViewController: UIViewController {
         if gamePlay.winner == 1 {
             gamePlay.gameIsActive = false
             gameLabel.isHidden = false
-            gameLabel.text = "X WINS THE GAME"
+            gameLabel.text = "\(playerX.name) wins the game"
             playerX.addWin()
             playerXScore.text = String(playerX.wins)
         }
@@ -73,7 +89,7 @@ class ViewController: UIViewController {
         else if gamePlay.winner == 2 {
             gamePlay.gameIsActive = false
             gameLabel.isHidden = false
-            gameLabel.text = "O WINS THE GAME"
+            gameLabel.text = "\(playerO.name) wins the game"
             playerO.addWin()
             playerOScore.text = String(playerO.wins)
         }
@@ -81,9 +97,28 @@ class ViewController: UIViewController {
         else if gamePlay.winner == 3 {
             gamePlay.gameIsActive = false
             gameLabel.isHidden = false
-            gameLabel.text = "THE GAME IS A TIE"
+            gameLabel.text = "The game is a tie"
         }
     }
+    
+    @IBAction func ChangePlayerModeButtonPressed(_ sender: Any) {
+        if aiDeciding == false {
+            aiDeciding = true
+            resetGameBoard()
+            resetScores()
+            playerONameLabel.text = "I am AI"
+            changePlayerModeButton.setTitle("Change to two players", for: .normal)
+            
+        }
+        else {
+            aiDeciding = false
+            resetGameBoard()
+            resetScores()
+            playerONameLabel.text = "Anonymous"
+            changePlayerModeButton.setTitle("Change to single player", for: .normal)
+        }
+    }
+    
     
     @IBAction func resetGameBoardButtonPressed(_ sender: Any) {
         
@@ -95,10 +130,7 @@ class ViewController: UIViewController {
         gamePlay.gameIsActive = true
         resetGameBoard()
         gamePlay.playersTurn = "X"
-        playerX.resetPlayerScore()
-        playerO.resetPlayerScore()
-        playerXScore.text = String(playerX.wins)
-        playerOScore.text = String(playerO.wins)
+        resetScores()
     }
     
     @IBAction func StartNewGameBarItemPressed(_ sender: Any) {
@@ -117,11 +149,10 @@ class ViewController: UIViewController {
                     
                     self.playerXNameLabel.text = playerXNewName
                     self.playerONameLabel.text = playerONewName
-                    self.playerX.resetPlayerScore()
-                    self.playerO.resetPlayerScore()
-                    self.playerXScore.text = String(self.playerX.wins)
-                    self.playerOScore.text = String(self.playerO.wins)
+                    self.resetScores()
                     self.resetGameBoard()
+                    self.playerX.updateName(newName: playerXNewName)
+                    self.playerO.updateName(newName: playerONewName)
                 }
                 
                 let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
@@ -133,14 +164,20 @@ class ViewController: UIViewController {
                     textField.autocapitalizationType = .words
                 }
                 alert.addTextField { textField in
-                    textField.placeholder = "Name player O"
-                    textField.autocapitalizationType = .words
+                    if self.aiDeciding == false {
+                        textField.placeholder = "Name player O"
+                        textField.autocapitalizationType = .words
+                    }
+                    else {
+                        textField.placeholder = "Name AI-computer"
+                        textField.autocapitalizationType = .words
+                    }
                 }
                 
                 present(alert, animated: true)
     }
     
-    private func addBorder(view: UIView) {
+    private func addBorderToView(view: UIView) {
         let bottomBorder = UIView(frame: CGRect(x: 0, y: view.frame.size.height-1, width:
         view.frame.width, height: 1.0))
         bottomBorder.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
@@ -150,6 +187,17 @@ class ViewController: UIViewController {
         topBorder.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         view.addSubview(topBorder)
     }
+    
+    private func addBorderToLabel(view: UILabel) {
+        let bottomBorder = UIView(frame: CGRect(x: -1, y: view.frame.size.height-20, width: view.frame.size.width, height: 1))
+        bottomBorder.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        view.addSubview(bottomBorder)
+        
+        let topBorder = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 1.0))
+        topBorder.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        view.addSubview(topBorder)
+    }
+    
     private func resetGameBoard() {
         
         gameLabel.isHidden = true
@@ -167,6 +215,13 @@ class ViewController: UIViewController {
         gameLabel.text?.removeAll()
         gamePlay.playersTurn = "X"
 
+    }
+    private func resetScores() {
+    
+        playerX.resetPlayerScore()
+        playerO.resetPlayerScore()
+        playerXScore.text = String(playerX.wins)
+        playerOScore.text = String(playerO.wins)
     }
     
     }
