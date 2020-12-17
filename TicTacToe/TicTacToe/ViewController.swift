@@ -55,12 +55,21 @@ class ViewController: UIViewController {
             gamePlay.updateGameboard(i: sender.tag, player: 1)
             
                 if aiDeciding == true {
-                    _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [self]_ in
-                      
-                        self.squareOne.setTitle("O", for: .normal)
-                        gamePlay.updateGameboard(i: squareOne.tag, player: 2)
-                        gamePlay.playersTurn = "X"
-                       }
+                
+                    var tagNr = 0
+                    for index in gamePlay.gameBoard {
+                            
+                        if index == 0 {
+                            break
+                    
+                        }
+                        tagNr += 1
+                        
+                    }
+                    setAiButton(tag: tagNr)
+                    gamePlay.playersTurn = "X"
+                    print(gamePlay.gameBoard)
+                       
                 }
                 else {
                     gamePlay.playersTurn = "O"
@@ -175,6 +184,46 @@ class ViewController: UIViewController {
                 }
                 
                 present(alert, animated: true)
+    }
+    
+    private func setAiButton(tag: Int) {
+        if tag == squareOne.tag {
+            squareOne.setTitle("O", for: .normal)
+            gamePlay.updateGameboard(i: squareOne.tag, player: 2)
+
+        }
+        if tag == squareTwo.tag {
+            squareTwo.setTitle("O", for: .normal)
+            gamePlay.updateGameboard(i: squareTwo.tag, player: 2)
+        }
+        if tag == squareThree.tag {
+            squareThree.setTitle("O", for: .normal)
+            gamePlay.updateGameboard(i: squareThree.tag, player: 2)
+        }
+        if tag == squareFour.tag {
+            squareFour.setTitle("O", for: .normal)
+            gamePlay.updateGameboard(i: squareFour.tag, player: 2)
+        }
+        if tag == squareFive.tag {
+            squareFive.setTitle("O", for: .normal)
+            gamePlay.updateGameboard(i: squareFive.tag, player: 2)
+        }
+        if tag == squareSix.tag {
+            squareSix.setTitle("O", for: .normal)
+            gamePlay.updateGameboard(i: squareSix.tag, player: 2)
+        }
+        if tag == squareSeven.tag {
+            squareSeven.setTitle("O", for: .normal)
+            gamePlay.updateGameboard(i: squareSeven.tag, player: 2)
+        }
+        if tag == squareEight.tag {
+            squareEight.setTitle("O", for: .normal)
+            gamePlay.updateGameboard(i: squareEight.tag, player: 2)
+        }
+        if tag == squareNine.tag {
+            squareNine.setTitle("O", for: .normal)
+            gamePlay.updateGameboard(i: squareNine.tag, player: 2)
+        }
     }
     
     private func addBorderToView(view: UIView) {
