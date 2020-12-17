@@ -22,13 +22,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var resetGameButton: UIButton!
     @IBOutlet weak var playerTwoUserView: UIView!
     @IBOutlet weak var playerOneUserView: UIView!
-    @IBOutlet weak var playVsComputer: UIButton!
     @IBOutlet weak var playerXScore: UILabel!
     @IBOutlet weak var playerOScore: UILabel!
     @IBOutlet weak var playerONameLabel: UILabel!
     @IBOutlet weak var playerXNameLabel: UILabel!
-    @IBOutlet weak var ResetScoreBarItem: UIBarButtonItem!
-    @IBOutlet weak var StartNewGameBarItem: UIBarButtonItem!
+    @IBOutlet weak var startNewGameButton: UIButton!
+    @IBOutlet weak var resetScoreButton: UIButton!
     @IBOutlet weak var changePlayerModeButton: UIButton!
     let gamePlay = CheckWinner()
     let playerX = Player()
@@ -41,8 +40,8 @@ class ViewController: UIViewController {
         addBorderToView(view: playerOneUserView)
         addBorderToView(view: playerTwoUserView)
         addBorderToLabel(view: gameLabel)
-        resetGameButton.layer.cornerRadius = 15
-        playVsComputer.layer.cornerRadius = 15
+        //resetGameButton.layer.cornerRadius = 15
+        //playVsComputer.layer.cornerRadius = 15
         gameLabel.isHidden = true
             }
     
@@ -115,8 +114,9 @@ class ViewController: UIViewController {
             aiDeciding = true
             resetGameBoard()
             resetScores()
-            playerONameLabel.text = "I am AI"
-            changePlayerModeButton.setTitle("Change to two players", for: .normal)
+            playerONameLabel.text = "Robot"
+            playerO.updateName(newName: "Robot")
+            changePlayerModeButton.setTitle("2 PLAYERS", for: .normal)
             
         }
         else {
@@ -124,7 +124,8 @@ class ViewController: UIViewController {
             resetGameBoard()
             resetScores()
             playerONameLabel.text = "Anonymous"
-            changePlayerModeButton.setTitle("Change to single player", for: .normal)
+            playerO.updateName(newName: "Anonymous")
+            changePlayerModeButton.setTitle("SINGLE PLAYER", for: .normal)
         }
     }
     
@@ -133,7 +134,7 @@ class ViewController: UIViewController {
         
         resetGameBoard()
     }
-    @IBAction func ResetScoreBarItemPressed(_ sender: Any) {
+    @IBAction func ResetScoreButtonPressed(_ sender: Any) {
         gameLabel.isHidden = true
         gamePlay.resetGameBoard()
         gamePlay.gameIsActive = true
@@ -142,7 +143,7 @@ class ViewController: UIViewController {
         resetScores()
     }
     
-    @IBAction func StartNewGameBarItemPressed(_ sender: Any) {
+    @IBAction func StartNewGameButtonPressed(_ sender: Any) {
         
         let alert = UIAlertController(title: "New game", message: "Enter player names", preferredStyle: .alert)
                 
@@ -190,7 +191,6 @@ class ViewController: UIViewController {
         if tag == squareOne.tag {
             squareOne.setTitle("O", for: .normal)
             gamePlay.updateGameboard(i: squareOne.tag, player: 2)
-
         }
         if tag == squareTwo.tag {
             squareTwo.setTitle("O", for: .normal)
