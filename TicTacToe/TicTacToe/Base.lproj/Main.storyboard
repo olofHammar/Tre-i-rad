@@ -148,7 +148,7 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="9R8-2M-QO4"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="20"/>
-                                <state key="normal" title="Play VS Computer"/>
+                                <state key="normal" title="Change to single player"/>
                                 <connections>
                                     <action selector="resetGameBoardButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wHw-I1-vw4"/>
                                 </connections>
@@ -285,12 +285,18 @@
                                 <rect key="frame" x="0.0" y="33" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title=" Reset Score  |  Edit Names " id="2oB-tR-owb">
-                                        <barButtonItem key="leftBarButtonItem" title="Item" id="MbY-SY-BIF">
+                                    <navigationItem title=" Reset Score  |  New game" id="2oB-tR-owb">
+                                        <barButtonItem key="leftBarButtonItem" title="Reset_score" id="MbY-SY-BIF">
                                             <imageReference key="image" image="gobackward" catalog="system" symbolScale="medium"/>
+                                            <connections>
+                                                <action selector="ResetScoreBarItemPressed:" destination="BYZ-38-t0r" id="Xgi-Ju-4F0"/>
+                                            </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" id="PFD-fs-1Dx">
-                                            <imageReference key="image" image="person.circle" catalog="system" symbolScale="large"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Start_new_game" id="PFD-fs-1Dx">
+                                            <imageReference key="image" image="plus" catalog="system" symbolScale="default"/>
+                                            <connections>
+                                                <action selector="StartNewGameBarItemPressed:" destination="BYZ-38-t0r" id="uCo-rQ-Fyx"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -353,10 +359,16 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="ResetScoreBarItem" destination="MbY-SY-BIF" id="d3g-KG-LhY"/>
+                        <outlet property="StartNewGameBarItem" destination="PFD-fs-1Dx" id="9Vr-c0-Ha9"/>
                         <outlet property="gameLabel" destination="8Kw-31-99f" id="GwV-wn-oSC"/>
                         <outlet property="playVsComputer" destination="vuW-Ob-uSD" id="oFl-ls-wof"/>
+                        <outlet property="playerONameLabel" destination="fml-nO-nHh" id="89q-pl-egE"/>
+                        <outlet property="playerOScore" destination="fCa-Mm-FRy" id="lpd-Tt-Gna"/>
                         <outlet property="playerOneUserView" destination="mfs-jQ-zh2" id="zcq-pc-Ckz"/>
                         <outlet property="playerTwoUserView" destination="2r0-bX-OlR" id="0Js-r7-FUN"/>
+                        <outlet property="playerXNameLabel" destination="RQS-qo-tsW" id="dyT-M0-aJ5"/>
+                        <outlet property="playerXScore" destination="KSc-ai-wcU" id="Jmd-Pw-rCU"/>
                         <outlet property="resetGameButton" destination="4IP-Xt-gmT" id="fPj-WD-0QW"/>
                         <outlet property="squareEight" destination="B6h-h0-v6a" id="UpW-8R-Rau"/>
                         <outlet property="squareFive" destination="cbs-TY-8En" id="qbw-AZ-Us5"/>
@@ -371,12 +383,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-7" y="12"/>
+            <point key="canvasLocation" x="-1109" y="-245"/>
         </scene>
     </scenes>
     <resources>
         <image name="gobackward" catalog="system" width="121" height="128"/>
-        <image name="person.circle" catalog="system" width="128" height="121"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="white_button_new" width="300" height="300"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
