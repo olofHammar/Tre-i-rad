@@ -19,13 +19,22 @@ class ViewController: UIViewController {
     @IBOutlet weak var squareEight: UIButton!
     @IBOutlet weak var squareNine: UIButton!
     @IBOutlet weak var gameLabel: UILabel!
+    @IBOutlet weak var resetGameButton: UIButton!
+    @IBOutlet weak var playerTwoUserView: UIView!
     
+    @IBOutlet weak var playerOneUserView: UIView!
+    @IBOutlet weak var playVsComputer: UIButton!
     let gamePlay = CheckWinner()
     var playerOneVictorys = 0
     var playerTwoVictorys = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        addBorder(view: playerOneUserView)
+        addBorder(view: playerTwoUserView)
+        resetGameButton.layer.cornerRadius = 15
+        playVsComputer.layer.cornerRadius = 15
+        gameLabel.isHidden = true
             }
     
     @IBAction func buttonSelectedSquare(_ sender: UIButton) {
@@ -34,14 +43,14 @@ class ViewController: UIViewController {
             print(gamePlay.gameBoard)
             if gamePlay.playersTurn == "X" {
             sender.setTitle("X", for: .normal)
-            sender.setTitleColor(.black, for: .normal)
+            //sender.setTitleColor(.black, for: .normal)
             gamePlay.updateGameboard(i: sender.tag, player: 1)
             gamePlay.playersTurn = "O"
         }
             
         else {
             sender.setTitle("O", for: .normal)
-            sender.setTitleColor(.systemRed, for: .normal)
+            //sender.setTitleColor(.systemOrange, for: .normal)
             gamePlay.updateGameboard(i: sender.tag, player: 2)
             gamePlay.playersTurn = "X"
         }
@@ -51,22 +60,26 @@ class ViewController: UIViewController {
         
         if gamePlay.winner == 1 {
             gamePlay.gameIsActive = false
-            gameLabel.text = "X has won!"
+            gameLabel.isHidden = false
+            gameLabel.text = "X WINS THE GAME"
         }
         
         else if gamePlay.winner == 2 {
             gamePlay.gameIsActive = false
-            gameLabel.text = "O has won!"
+            gameLabel.isHidden = false
+            gameLabel.text = "O WINS THE GAME"
         }
         
         else if gamePlay.winner == 3 {
             gamePlay.gameIsActive = false
-            gameLabel.text = "The game is a tie."
+            gameLabel.isHidden = false
+            gameLabel.text = "THE GAME IS A TIE"
         }
     }
     
     @IBAction func resetGameBoardButtonPressed(_ sender: Any) {
         
+        gameLabel.isHidden = true
         gamePlay.resetGameBoard()
         gamePlay.gameIsActive = true
         squareOne.setTitle("", for: .normal)
@@ -80,6 +93,16 @@ class ViewController: UIViewController {
         squareNine.setTitle("", for: .normal)
         gameLabel.text?.removeAll()
         gamePlay.playersTurn = "X"
+    }
+    private func addBorder(view: UIView) {
+        let bottomBorder = UIView(frame: CGRect(x: 0, y: view.frame.size.height-1, width:
+        view.frame.width, height: 1.0))
+        bottomBorder.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        view.addSubview(bottomBorder)
+        
+        let topBorder = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 1.0))
+        topBorder.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        view.addSubview(topBorder)
     }
     
     }
