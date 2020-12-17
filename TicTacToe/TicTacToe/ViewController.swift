@@ -21,12 +21,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var gameLabel: UILabel!
     @IBOutlet weak var resetGameButton: UIButton!
     @IBOutlet weak var playerTwoUserView: UIView!
-    
     @IBOutlet weak var playerOneUserView: UIView!
     @IBOutlet weak var playVsComputer: UIButton!
+    @IBOutlet weak var playerXScore: UILabel!
+    @IBOutlet weak var playerOScore: UILabel!
+    
     let gamePlay = CheckWinner()
-    var playerOneVictorys = 0
-    var playerTwoVictorys = 0
+    let playerX = Player()
+    let playerO = Player()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,12 +64,16 @@ class ViewController: UIViewController {
             gamePlay.gameIsActive = false
             gameLabel.isHidden = false
             gameLabel.text = "X WINS THE GAME"
+            playerX.addWin()
+            playerXScore.text = String(playerX.wins)
         }
         
         else if gamePlay.winner == 2 {
             gamePlay.gameIsActive = false
             gameLabel.isHidden = false
             gameLabel.text = "O WINS THE GAME"
+            playerO.addWin()
+            playerOScore.text = String(playerO.wins)
         }
         
         else if gamePlay.winner == 3 {
