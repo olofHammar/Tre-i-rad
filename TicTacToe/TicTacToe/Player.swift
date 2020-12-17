@@ -12,8 +12,11 @@ class Player {
     var wins: Int
     
     init() {
-        self.name = ""
+        self.name = "Anonymous"
         self.wins = 0
+    }
+    func updateName(newName: String) {
+        self.name = newName
     }
     
     func addWin()  {

@@ -150,6 +150,7 @@
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="20"/>
                                 <state key="normal" title="Change to single player"/>
                                 <connections>
+                                    <action selector="ChangePlayerModeButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nFh-Yd-cSl"/>
                                     <action selector="resetGameBoardButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wHw-I1-vw4"/>
                                 </connections>
                             </button>
@@ -166,7 +167,7 @@
                                         <color key="textColor" systemColor="systemGrayColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Olle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQS-qo-tsW">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anonymous" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQS-qo-tsW">
                                         <rect key="frame" x="129" y="8" width="157" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="157" id="CNZ-gU-AOw"/>
@@ -230,7 +231,7 @@
                                         <color key="textColor" systemColor="systemGrayColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sanna" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fml-nO-nHh">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anonymous" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fml-nO-nHh">
                                         <rect key="frame" x="129" y="8" width="157" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="36" id="2hT-eq-Ecx"/>
@@ -361,6 +362,7 @@
                     <connections>
                         <outlet property="ResetScoreBarItem" destination="MbY-SY-BIF" id="d3g-KG-LhY"/>
                         <outlet property="StartNewGameBarItem" destination="PFD-fs-1Dx" id="9Vr-c0-Ha9"/>
+                        <outlet property="changePlayerModeButton" destination="vuW-Ob-uSD" id="Rwz-5c-UgD"/>
                         <outlet property="gameLabel" destination="8Kw-31-99f" id="GwV-wn-oSC"/>
                         <outlet property="playVsComputer" destination="vuW-Ob-uSD" id="oFl-ls-wof"/>
                         <outlet property="playerONameLabel" destination="fml-nO-nHh" id="89q-pl-egE"/>
