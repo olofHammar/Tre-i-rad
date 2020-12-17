@@ -19,4 +19,8 @@ class Player {
     func addWin()  {
         wins += 1
     }
+    
+    func resetPlayerScore() {
+        wins = 0
+    }
 }
