@@ -400,6 +400,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomView" destination="7ie-n9-Gd4" id="1ap-Cf-PIT"/>
                         <outlet property="changePlayerModeButton" destination="W6m-hj-AwW" id="Vh1-Gi-kOn"/>
                         <outlet property="gameLabel" destination="8Kw-31-99f" id="GwV-wn-oSC"/>
                         <outlet property="playerONameLabel" destination="fml-nO-nHh" id="89q-pl-egE"/>
@@ -420,6 +421,7 @@
                         <outlet property="squareThree" destination="ndG-I5-cp0" id="jGD-Z4-fLf"/>
                         <outlet property="squareTwo" destination="p1g-YA-ns3" id="Lw7-eU-WMw"/>
                         <outlet property="startNewGameButton" destination="oun-8s-xUK" id="Tuz-YH-Gwf"/>
+                        <outlet property="topView" destination="LLt-on-yZz" id="7sU-8x-zDP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

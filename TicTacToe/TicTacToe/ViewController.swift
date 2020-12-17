@@ -22,6 +22,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var resetGameButton: UIButton!
     @IBOutlet weak var playerTwoUserView: UIView!
     @IBOutlet weak var playerOneUserView: UIView!
+    @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var playerXScore: UILabel!
     @IBOutlet weak var playerOScore: UILabel!
     @IBOutlet weak var playerONameLabel: UILabel!
@@ -32,19 +34,20 @@ class ViewController: UIViewController {
     let gamePlay = CheckWinner()
     let playerX = Player()
     let playerO = Player()
-    var aiDeciding = false
+    var aiIsActivated = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addBorderToView(view: playerOneUserView)
-        addBorderToView(view: playerTwoUserView)
+        addBorderToView(view: playerOneUserView, color: #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
+        addBorderToView(view: playerTwoUserView, color: #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
+        addBorderToView(view: topView, color: #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
+        addBorderToView(view: bottomView, color: #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
         addBorderToLabel(view: gameLabel)
-        //resetGameButton.layer.cornerRadius = 15
-        //playVsComputer.layer.cornerRadius = 15
         gameLabel.isHidden = true
             }
     
+    //The functions below until the next comment manages ui-actions
     @IBAction func buttonSelectedSquare(_ sender: UIButton) {
        
         if gamePlay.gameBoard[sender.tag] == 0 && gamePlay.gameIsActive == true {
@@ -53,22 +56,26 @@ class ViewController: UIViewController {
             sender.setTitle("X", for: .normal)
             gamePlay.updateGameboard(i: sender.tag, player: 1)
             
-                if aiDeciding == true {
+                if aiIsActivated == true {
                 
                     var tagNr = 0
-                    for index in gamePlay.gameBoard {
-                            
-                        if index == 0 {
-                            break
+                    var listOfZeros = [Int]()
+                    var zero = 0
                     
+                    for index in gamePlay.gameBoard {
+                        if index == 0 {
+                            zero = tagNr
+                            listOfZeros.append(zero)
                         }
                         tagNr += 1
-                        
                     }
+                    listOfZeros.shuffle()
+                    //print(listOfZeros)
+                    if listOfZeros.count >= 2 {
+                    tagNr = listOfZeros[0]
                     setAiButton(tag: tagNr)
+                    }
                     gamePlay.playersTurn = "X"
-                    print(gamePlay.gameBoard)
-                       
                 }
                 else {
                     gamePlay.playersTurn = "O"
@@ -110,8 +117,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func ChangePlayerModeButtonPressed(_ sender: Any) {
-        if aiDeciding == false {
-            aiDeciding = true
+        if aiIsActivated == false {
+            aiIsActivated = true
             resetGameBoard()
             resetScores()
             playerONameLabel.text = "Robot"
@@ -120,7 +127,7 @@ class ViewController: UIViewController {
             
         }
         else {
-            aiDeciding = false
+            aiIsActivated = false
             resetGameBoard()
             resetScores()
             playerONameLabel.text = "Anonymous"
@@ -174,7 +181,7 @@ class ViewController: UIViewController {
                     textField.autocapitalizationType = .words
                 }
                 alert.addTextField { textField in
-                    if self.aiDeciding == false {
+                    if self.aiIsActivated == false {
                         textField.placeholder = "Name player O"
                         textField.autocapitalizationType = .words
                     }
@@ -186,7 +193,7 @@ class ViewController: UIViewController {
                 
                 present(alert, animated: true)
     }
-    
+    //This function takes the randomly selected int from ai-player and matches it to a button.tag. It then changes the title of the button and updates the gameboard in the correct place.
     private func setAiButton(tag: Int) {
         if tag == squareOne.tag {
             squareOne.setTitle("O", for: .normal)
@@ -226,27 +233,7 @@ class ViewController: UIViewController {
         }
     }
     
-    private func addBorderToView(view: UIView) {
-        let bottomBorder = UIView(frame: CGRect(x: 0, y: view.frame.size.height-1, width:
-        view.frame.width, height: 1.0))
-        bottomBorder.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        view.addSubview(bottomBorder)
-        
-        let topBorder = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 1.0))
-        topBorder.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        view.addSubview(topBorder)
-    }
-    
-    private func addBorderToLabel(view: UILabel) {
-        let bottomBorder = UIView(frame: CGRect(x: -1, y: view.frame.size.height-20, width: view.frame.size.width, height: 1))
-        bottomBorder.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        view.addSubview(bottomBorder)
-        
-        let topBorder = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 1.0))
-        topBorder.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        view.addSubview(topBorder)
-    }
-    
+    //This function resets the gameboard
     private func resetGameBoard() {
         
         gameLabel.isHidden = true
@@ -265,6 +252,8 @@ class ViewController: UIViewController {
         gamePlay.playersTurn = "X"
 
     }
+    
+    //This function resets the score on both players
     private func resetScores() {
     
         playerX.resetPlayerScore()
@@ -273,6 +262,27 @@ class ViewController: UIViewController {
         playerOScore.text = String(playerO.wins)
     }
     
+    //The functions below handles ui-design
+    private func addBorderToView(view: UIView, color: UIColor) {
+        let bottomBorder = UIView(frame: CGRect(x: 0, y: view.frame.size.height-1, width:
+        view.frame.width, height: 1.0))
+        bottomBorder.backgroundColor = color
+        view.addSubview(bottomBorder)
+        
+        let topBorder = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 1.0))
+        topBorder.backgroundColor = color
+        view.addSubview(topBorder)
+    }
+    
+    private func addBorderToLabel(view: UILabel) {
+        let bottomBorder = UIView(frame: CGRect(x: -1, y: view.frame.size.height-20, width: view.frame.size.width, height: 1))
+        bottomBorder.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        view.addSubview(bottomBorder)
+        
+        let topBorder = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 1.0))
+        topBorder.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        view.addSubview(topBorder)
+    }
     }
 
 
