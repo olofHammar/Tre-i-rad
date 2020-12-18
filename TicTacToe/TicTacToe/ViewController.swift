@@ -95,6 +95,7 @@ class ViewController: UIViewController {
         }
     }
     
+    //This function switches from 1 and 2 player mode when button is clicked.
     @IBAction func ChangePlayerModeButtonPressed(_ sender: Any) {
         
         if aiIsActivated == false {
@@ -118,11 +119,13 @@ class ViewController: UIViewController {
         }
     }
     
+    //This function resets the gameboard when button is clicked.
     @IBAction func resetGameBoardButtonPressed(_ sender: Any) {
         
         resetGameBoard()
     }
     
+    //This function resets the score for both players when button is clicked.
     @IBAction func ResetScoreButtonPressed(_ sender: Any) {
         
         gameLabel.isHidden = true
@@ -133,6 +136,10 @@ class ViewController: UIViewController {
         resetScores()
     }
     
+    /*
+     This function start a new game. When button is clicked an alertbox is displayed where
+     the player/players can set their names. It the resets the board and scores.
+     */
     @IBAction func StartNewGameButtonPressed(_ sender: Any) {
         
         let alert = UIAlertController(title: "New game", message: "Enter player names", preferredStyle: .alert)
@@ -304,6 +311,7 @@ class ViewController: UIViewController {
         view.addSubview(topBorder)
     }
     
+    //This function does a short animation so that the displayed brick fades in smooth
     private func animatePlayerMove (button: UIButton) {
         
         button.titleLabel?.alpha = 0
