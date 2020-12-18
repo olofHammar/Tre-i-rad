@@ -58,8 +58,7 @@ class ViewController: UIViewController {
             gamePlay.updateGameboard(i: sender.tag, player: 1)
                 
                 gamePlay.checkForWinningCombination()
-                gamePlay.printWinner(scoreLabelX: playerXScore, scoreLabelO: playerOScore, gameLabel: gameLabel, playerX: playerX, playerO: playerO)
-            
+                
                 if aiIsActivated == true {
                 
                     var tagNr = 0
