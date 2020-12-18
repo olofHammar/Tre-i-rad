@@ -9,10 +9,12 @@ import Foundation
 
 class Player {
     var name: String
+    var brick: String
     var wins: Int
     
-    init() {
+    init(brick: String) {
         self.name = "Anonymous"
+        self.brick = brick
         self.wins = 0
     }
     func updateName(newName: String) {
