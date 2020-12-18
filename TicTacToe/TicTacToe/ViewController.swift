@@ -53,7 +53,10 @@ class ViewController: UIViewController {
         
     }
     
-    //The functions below until the next comment manages ui-actions
+    /*
+     When square is clicked this function sets the X or O, updates the gameboard and checks
+     if there is a winner. It also handles the play for the comuter in single player.
+     */
     @IBAction func buttonSelectedSquare(_ sender: UIButton) {
        
         if gamePlay.gameBoard[sender.tag] == 0 && gamePlay.gameIsActive == true {
