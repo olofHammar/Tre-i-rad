@@ -31,7 +31,7 @@ class CheckWinner {
         gameBoard = [0,0,0,0,0,0,0,0,0]
     }
     
-    func checkForWinningCombination () -> Int {
+    func checkForWinningCombination () -> (Int, Bool) {
         let board = gameBoard
         //var gameIsActive = true
         winner = 0
@@ -43,11 +43,13 @@ class CheckWinner {
                 
                 if board[combo[0]] == 1 {
                     winner = 1
-                    return self.winner
+                    gameIsActive = false
+                    return (self.winner, gameIsActive)
                 }
                 else {
                     winner = 2
-                    return self.winner
+                    gameIsActive = false
+                    return (self.winner, gameIsActive)
                 }
             }
         }
@@ -65,7 +67,7 @@ class CheckWinner {
             winner = 3
         }
         
-        return self.winner
+        return (self.winner, gameIsActive)
     }
     
     func printWinner(scoreLabelX: UILabel, scoreLabelO: UILabel, gameLabel: UILabel, playerX: Player, playerO: Player) {
