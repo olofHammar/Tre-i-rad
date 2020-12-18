@@ -18,23 +18,24 @@ class ViewController: UIViewController {
     @IBOutlet weak var squareSeven: UIButton!
     @IBOutlet weak var squareEight: UIButton!
     @IBOutlet weak var squareNine: UIButton!
-    @IBOutlet weak var gameLabel: UILabel!
-    @IBOutlet weak var resetGameButton: UIButton!
     @IBOutlet weak var playerTwoUserView: UIView!
     @IBOutlet weak var playerOneUserView: UIView!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var gameLabel: UILabel!
     @IBOutlet weak var playerXScore: UILabel!
     @IBOutlet weak var playerOScore: UILabel!
-    @IBOutlet weak var playerONameLabel: UILabel!
     @IBOutlet weak var playerXNameLabel: UILabel!
+    @IBOutlet weak var playerONameLabel: UILabel!
+    @IBOutlet weak var resetGameButton: UIButton!
     @IBOutlet weak var startNewGameButton: UIButton!
     @IBOutlet weak var resetScoreButton: UIButton!
     @IBOutlet weak var changePlayerModeButton: UIButton!
-    let gamePlay = CheckWinner()
-    let playerX = Player()
-    let playerO = Player()
-    var aiIsActivated = false
+    
+    private let gamePlay = CheckWinner()
+    private let playerX = Player()
+    private let playerO = Player()
+    private var aiIsActivated = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +56,9 @@ class ViewController: UIViewController {
             if gamePlay.playersTurn == "X" {
             sender.setTitle("X", for: .normal)
             gamePlay.updateGameboard(i: sender.tag, player: 1)
+                
+                gamePlay.checkForWinningCombination()
+                gamePlay.printWinner(scoreLabelX: playerXScore, scoreLabelO: playerOScore, gameLabel: gameLabel, playerX: playerX, playerO: playerO)
             
                 if aiIsActivated == true {
                 
@@ -71,7 +75,7 @@ class ViewController: UIViewController {
                     }
                     listOfZeros.shuffle()
                     //print(listOfZeros)
-                    if listOfZeros.count >= 2 {
+                    if listOfZeros.count >= 2 && gamePlay.gameIsActive == true {
                     tagNr = listOfZeros[0]
                     setAiButton(tag: tagNr)
                     }
@@ -92,28 +96,7 @@ class ViewController: UIViewController {
         }
         
         gamePlay.checkForWinningCombination()
-        
-        if gamePlay.winner == 1 {
-            gamePlay.gameIsActive = false
-            gameLabel.isHidden = false
-            gameLabel.text = "\(playerX.name) wins the game"
-            playerX.addWin()
-            playerXScore.text = String(playerX.wins)
-        }
-        
-        else if gamePlay.winner == 2 {
-            gamePlay.gameIsActive = false
-            gameLabel.isHidden = false
-            gameLabel.text = "\(playerO.name) wins the game"
-            playerO.addWin()
-            playerOScore.text = String(playerO.wins)
-        }
-        
-        else if gamePlay.winner == 3 {
-            gamePlay.gameIsActive = false
-            gameLabel.isHidden = false
-            gameLabel.text = "The game is a tie"
-        }
+        gamePlay.printWinner(scoreLabelX: playerXScore, scoreLabelO: playerOScore, gameLabel: gameLabel, playerX: playerX, playerO: playerO)
     }
     
     @IBAction func ChangePlayerModeButtonPressed(_ sender: Any) {
@@ -193,6 +176,7 @@ class ViewController: UIViewController {
                 
                 present(alert, animated: true)
     }
+    
     //This function takes the randomly selected int from ai-player and matches it to a button.tag. It then changes the title of the button and updates the gameboard in the correct place.
     private func setAiButton(tag: Int) {
         if tag == squareOne.tag {

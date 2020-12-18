@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class CheckWinner {
     
@@ -65,5 +66,32 @@ class CheckWinner {
         }
         
         return self.winner
+    }
+    
+    func printWinner(scoreLabelX: UILabel, scoreLabelO: UILabel, gameLabel: UILabel, playerX: Player, playerO: Player) {
+        
+        if winner == 1 {
+            gameIsActive = false
+            gameLabel.isHidden = false
+            gameLabel.text = "\(playerX.name) wins the game"
+            playerX.addWin()
+            scoreLabelX.text = String(playerX.wins)
+        }
+        
+        else if winner == 2 {
+            gameIsActive = false
+            gameLabel.isHidden = false
+            gameLabel.text = "\(playerO.name) wins the game"
+            playerO.addWin()
+            scoreLabelO.text = String(playerO.wins)
+        }
+        
+        else if winner == 3 {
+            gameIsActive = false
+            gameLabel.isHidden = false
+            gameLabel.text = "The game is a tie"
+        }
+        
+        
     }
 }
