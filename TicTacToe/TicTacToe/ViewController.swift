@@ -55,51 +55,36 @@ class ViewController: UIViewController {
         
             if gamePlay.playersTurn == playerX.brick {
                 
-            animatePlayerMove(button: sender)
-            sender.setTitle("X", for: .normal)
-            gamePlay.updateGameboard(i: sender.tag, player: 1)
-                
+                animatePlayerMove(button: sender)
+                sender.setTitle("X", for: .normal)
+                gamePlay.updateGameboard(i: sender.tag, player: 1)
                 gamePlay.checkForWinningCombination()
                 
                 if aiIsActivated == true {
-                
-                    var tagNr = 0
-                    var listOfZeros = [Int]()
-                    var zero = 0
-                    
-                    for index in gamePlay.gameBoard {
-                        if index == 0 {
-                            zero = tagNr
-                            listOfZeros.append(zero)
-                        }
-                        tagNr += 1
+
+                    if gamePlay.gameIsActive == true {
+                        gamePlay.tagNr = gamePlay.aiLogic()
+                        setAiButton(tag: gamePlay.tagNr)
+                        print(gamePlay.gameBoard)
+                        gamePlay.playersTurn = playerX.brick
                     }
-                    listOfZeros.shuffle()
-                    //print(listOfZeros)
-                    if listOfZeros.count >= 2 && gamePlay.gameIsActive == true {
-                    tagNr = listOfZeros[0]
-                    setAiButton(tag: tagNr)
-                    }
-                    gamePlay.playersTurn = playerX.brick
                 }
+                
                 else {
                     gamePlay.playersTurn = playerO.brick
                 }
             }
             
-        else {
-        
-            animatePlayerMove(button: sender)
-            sender.setTitle("O", for: .normal)
-            gamePlay.updateGameboard(i: sender.tag, player: 2)
-            gamePlay.playersTurn = playerX.brick
-            
+            else {
+                animatePlayerMove(button: sender)
+                sender.setTitle("O", for: .normal)
+                gamePlay.updateGameboard(i: sender.tag, player: 2)
+                gamePlay.playersTurn = playerX.brick
             }
+            gamePlay.checkForWinningCombination()
+            gamePlay.printWinner(scoreLabelX: playerXScore, scoreLabelO: playerOScore,
+                                 gameLabel: gameLabel, playerX: playerX, playerO: playerO)
         }
-
-        gamePlay.checkForWinningCombination()
-        gamePlay.printWinner(scoreLabelX: playerXScore, scoreLabelO: playerOScore,
-                             gameLabel: gameLabel, playerX: playerX, playerO: playerO)
     }
     
     @IBAction func ChangePlayerModeButtonPressed(_ sender: Any) {
@@ -271,11 +256,11 @@ class ViewController: UIViewController {
     }
     
     private func addBorderToLabel(view: UILabel) {
-        let bottomBorder = UIView(frame: CGRect(x: -1, y: view.frame.size.height-20, width: view.frame.size.width, height: 1.5))
+        let bottomBorder = UIView(frame: CGRect(x: -1, y: view.frame.size.height-20, width: view.frame.size.width, height: 1.0))
         bottomBorder.backgroundColor = .systemBlue
         view.addSubview(bottomBorder)
         
-        let topBorder = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 1.5))
+        let topBorder = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 1.0))
         topBorder.backgroundColor = .systemBlue
         view.addSubview(topBorder)
     }
