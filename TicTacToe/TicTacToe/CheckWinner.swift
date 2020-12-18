@@ -21,6 +21,7 @@ class CheckWinner {
     var gameBoard: Array<Int>
     var gameIsActive: Bool
     var playersTurn: String
+    var tagNr: Int
     
     init() {
         
@@ -28,6 +29,7 @@ class CheckWinner {
         self.gameBoard = [0,0,0,0,0,0,0,0,0]
         self.gameIsActive = true
         self.playersTurn = "X"
+        self.tagNr = 0
     }
     
     func updateGameboard(i: Int, player: Int) {
@@ -108,4 +110,159 @@ class CheckWinner {
             gameLabel.text = "The game is a tie"
         }
     }
+    
+    func aiLogic() -> Int {
+        
+        tagNr = 0
+
+        if gameBoard[4] == 0 {
+            tagNr = 4
+            return tagNr
+        }
+        //Block top row X X 0
+        if gameBoard[0] == 1 && gameBoard[1] == 1 && gameBoard[2] == 0 {
+            tagNr = 2
+            return tagNr
+        }
+        //Block top row 0 X X
+        if gameBoard[1] == 1 && gameBoard[2] == 1 && gameBoard[0] == 0 {
+           tagNr = 0
+           return tagNr
+        }
+        //Block top row X 0 X
+        if gameBoard[0] == 1 && gameBoard[2] == 1 && gameBoard[1] == 0 {
+            tagNr = 1
+            return tagNr
+        }
+        //Block center row X X 0
+        if gameBoard[3] == 1 && gameBoard[4] == 1 && gameBoard[5] == 0 {
+            tagNr = 5
+            return tagNr
+        }
+        //Block center row 0 X X
+        if gameBoard[5] == 1 && gameBoard[4] == 1 && gameBoard[3] == 0 {
+            tagNr = 3
+            return tagNr
+        }
+        //Block top row X 0 X
+        if gameBoard[3] == 1 && gameBoard[5] == 1 && gameBoard[4] == 0 {
+            tagNr = 4
+            return tagNr
+        }
+        //Block bottom row X X 0
+        if gameBoard[6] == 1 && gameBoard[7] == 1 && gameBoard[8] == 0 {
+           tagNr = 8
+            return tagNr
+        }
+        //Block bottom row 0 X X
+        if gameBoard[8] == 1 && gameBoard[7] == 1 && gameBoard[6] == 0 {
+            tagNr = 6
+            return tagNr
+        }
+        //Block bottom row X 0  X
+        if gameBoard[6] == 1 && gameBoard[8] == 1 && gameBoard[7] == 0 {
+            tagNr = 7
+            return tagNr
+        }
+        //Block cross-line from top left
+        if gameBoard[0] == 1 && gameBoard[4] == 1 && gameBoard[8] == 0 {
+            tagNr = 8
+            return tagNr
+        }
+        //Block cross-line from bottom left
+        if gameBoard[8] == 1 && gameBoard[4] == 1 && gameBoard[0] == 0 {
+            tagNr = 0
+            return tagNr
+        }
+        //Block center for cross-line left to right
+        if gameBoard[0] == 1 && gameBoard[8] == 1 && gameBoard[4] == 0 {
+            tagNr = 4
+            return tagNr
+        }
+        //Block cross-line from top right
+        if gameBoard[2] == 1 && gameBoard[4] == 1 && gameBoard[6] == 0 {
+            tagNr = 6
+            return tagNr
+        }
+        //Block cross-line from bottom right
+        if gameBoard[6] == 1 && gameBoard[4] == 1 && gameBoard[2] == 0 {
+            tagNr = 2
+            return tagNr
+        }
+        //Block center for cross-line right to left
+        if gameBoard[2] == 1 && gameBoard[6] == 1 && gameBoard[4] == 0 {
+            tagNr = 4
+            return tagNr
+        }
+        //Block left row square 6
+        if gameBoard[0] == 1 && gameBoard[3] == 1 && gameBoard[6] == 0 {
+            tagNr = 6
+            return tagNr
+        }
+        //Block left row square 3
+        if gameBoard[0] == 1 && gameBoard[6] == 1 && gameBoard[3] == 0 {
+            tagNr = 3
+            return tagNr
+        }
+        //Block left row square 0
+        if gameBoard[3] == 1 && gameBoard[6] == 1 && gameBoard[0] == 0 {
+            tagNr = 0
+            return tagNr
+        }
+        //Block center row square 7
+        if gameBoard[1] == 1 && gameBoard[4] == 1 && gameBoard[7] == 0 {
+            tagNr = 7
+            return tagNr
+        }
+        //Block center row square 4
+        if gameBoard[1] == 1 && gameBoard[7] == 1 && gameBoard[4] == 0 {
+            tagNr = 4
+            return tagNr
+        }
+        //Block center row square 1
+        if gameBoard[4] == 1 && gameBoard[7] == 1 && gameBoard[1] == 0 {
+            tagNr = 1
+            return tagNr
+        }
+        //Block right row square 8
+        if gameBoard[2] == 1 && gameBoard[5] == 1 && gameBoard[8] == 0 {
+            tagNr = 8
+            return tagNr
+        }
+        //Block top row square 5
+        if gameBoard[2] == 1 && gameBoard[8] == 1 && gameBoard[5] == 0 {
+            tagNr = 5
+            return tagNr
+        }
+        //Block top row square 2
+        if gameBoard[5] == 1 && gameBoard[8] == 1 && gameBoard[2] == 0 {
+            tagNr = 2
+            return tagNr
+        }
+
+        else {
+            var listOfZeros = [Int]()
+            var zero = 0
+            
+            for index in gameBoard {
+                if index == 0 {
+                    zero = tagNr
+                    listOfZeros.append(zero)
+                }
+                tagNr += 1
+            }
+            listOfZeros.shuffle()
+            if listOfZeros.count >= 2 && gameIsActive == true {
+            tagNr = listOfZeros[0]
+                print(tagNr)
+                return tagNr
+                
+            }
+            
+        }
+
+        return tagNr
+    }    
 }
+
+
