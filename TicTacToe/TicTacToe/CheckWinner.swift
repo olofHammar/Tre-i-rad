@@ -33,10 +33,12 @@ class CheckWinner {
     }
     
     func updateGameboard(i: Int, player: Int) {
+        
         gameBoard[i] = player
     }
     
     func resetGameBoard() {
+        
         gameBoard = [0,0,0,0,0,0,0,0,0]
     }
     
@@ -47,8 +49,9 @@ class CheckWinner {
      I reset the winner to zero each time the method is called.
      */
     func checkForWinningCombination () -> (Int, Bool) {
+        
         let board = gameBoard
-        //var gameIsActive = true
+
         winner = 0
         let winningCombos = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]]
 
@@ -61,6 +64,7 @@ class CheckWinner {
                     gameIsActive = false
                     return (self.winner, gameIsActive)
                 }
+                
                 else {
                     winner = 2
                     gameIsActive = false
@@ -111,6 +115,7 @@ class CheckWinner {
         }
     }
     
+    //This method block everytime playerX has two in a row
     func aiLogic() -> Int {
         
         tagNr = 0
@@ -258,7 +263,6 @@ class CheckWinner {
                 return tagNr
                 
             }
-            
         }
 
         return tagNr

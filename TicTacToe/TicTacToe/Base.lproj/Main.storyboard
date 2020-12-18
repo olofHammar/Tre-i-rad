@@ -141,7 +141,7 @@
                                         <color key="textColor" systemColor="systemGrayColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anonymous" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQS-qo-tsW">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQS-qo-tsW">
                                         <rect key="frame" x="129" y="8" width="157" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="157" id="CNZ-gU-AOw"/>
@@ -205,7 +205,7 @@
                                         <color key="textColor" systemColor="systemGrayColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anonymous" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fml-nO-nHh">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fml-nO-nHh">
                                         <rect key="frame" x="129" y="8" width="157" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="36" id="2hT-eq-Ecx"/>
@@ -404,11 +404,11 @@
                         <outlet property="changePlayerModeButton" destination="W6m-hj-AwW" id="Vh1-Gi-kOn"/>
                         <outlet property="gameLabel" destination="8Kw-31-99f" id="GwV-wn-oSC"/>
                         <outlet property="playerONameLabel" destination="fml-nO-nHh" id="89q-pl-egE"/>
-                        <outlet property="playerOScore" destination="fCa-Mm-FRy" id="lpd-Tt-Gna"/>
+                        <outlet property="playerOScoreLabel" destination="fCa-Mm-FRy" id="oGg-r9-lH1"/>
                         <outlet property="playerOneUserView" destination="mfs-jQ-zh2" id="zcq-pc-Ckz"/>
                         <outlet property="playerTwoUserView" destination="2r0-bX-OlR" id="0Js-r7-FUN"/>
                         <outlet property="playerXNameLabel" destination="RQS-qo-tsW" id="dyT-M0-aJ5"/>
-                        <outlet property="playerXScore" destination="KSc-ai-wcU" id="Jmd-Pw-rCU"/>
+                        <outlet property="playerXScoreLabel" destination="KSc-ai-wcU" id="vW5-8v-Ee6"/>
                         <outlet property="resetGameButton" destination="KTc-qy-IPh" id="q47-07-WPh"/>
                         <outlet property="resetScoreButton" destination="FAe-G3-8jg" id="KzF-z7-WqS"/>
                         <outlet property="squareEight" destination="B6h-h0-v6a" id="UpW-8R-Rau"/>

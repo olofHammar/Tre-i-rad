@@ -9,7 +9,7 @@ import Foundation
 
 /*
  This is the class that handles the games players. The name and wins are set to default values
- and the brick variable is set the X for one player and O for the other.
+ and the brick variable is set the X for one player and O for the other in ViewController.
 */
 class Player {
     var name: String
@@ -17,7 +17,7 @@ class Player {
     var wins: Int
     
     init(brick: String) {
-        self.name = "Anonymous"
+        self.name = "---"
         self.brick = brick
         self.wins = 0
     }
