@@ -33,8 +33,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var changePlayerModeButton: UIButton!
     
     private let gamePlay = CheckWinner()
-    private let playerX = Player()
-    private let playerO = Player()
+    private let playerX = Player(brick: "X")
+    private let playerO = Player(brick: "O")
     private var aiIsActivated = false
 
     override func viewDidLoad() {
@@ -53,7 +53,7 @@ class ViewController: UIViewController {
        
         if gamePlay.gameBoard[sender.tag] == 0 && gamePlay.gameIsActive == true {
         
-            if gamePlay.playersTurn == "X" {
+            if gamePlay.playersTurn == playerX.brick {
             sender.setTitle("X", for: .normal)
             gamePlay.updateGameboard(i: sender.tag, player: 1)
                 
@@ -78,10 +78,10 @@ class ViewController: UIViewController {
                     tagNr = listOfZeros[0]
                     setAiButton(tag: tagNr)
                     }
-                    gamePlay.playersTurn = "X"
+                    gamePlay.playersTurn = playerX.brick
                 }
                 else {
-                    gamePlay.playersTurn = "O"
+                    gamePlay.playersTurn = playerO.brick
                 }
             }
             
@@ -89,7 +89,7 @@ class ViewController: UIViewController {
         
             sender.setTitle("O", for: .normal)
             gamePlay.updateGameboard(i: sender.tag, player: 2)
-            gamePlay.playersTurn = "X"
+            gamePlay.playersTurn = playerX.brick
             
             }
         }
@@ -128,7 +128,7 @@ class ViewController: UIViewController {
         gamePlay.resetGameBoard()
         gamePlay.gameIsActive = true
         resetGameBoard()
-        gamePlay.playersTurn = "X"
+        gamePlay.playersTurn = playerX.brick
         resetScores()
     }
     
@@ -232,7 +232,7 @@ class ViewController: UIViewController {
         squareEight.setTitle("", for: .normal)
         squareNine.setTitle("", for: .normal)
         gameLabel.text?.removeAll()
-        gamePlay.playersTurn = "X"
+        gamePlay.playersTurn = playerX.brick
 
     }
     
