@@ -42,8 +42,8 @@ class ViewController: UIViewController {
         
         addBorderToView(view: playerOneUserView, color: #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
         addBorderToView(view: playerTwoUserView, color: #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
-        addBorderToView(view: topView, color: #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
-        addBorderToView(view: bottomView, color: #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
+        addBorderToView(view: topView, color: .black)
+        addBorderToView(view: bottomView, color: .black)
         addBorderToLabel(view: gameLabel)
         gameLabel.isHidden = true
             }
@@ -54,6 +54,8 @@ class ViewController: UIViewController {
         if gamePlay.gameBoard[sender.tag] == 0 && gamePlay.gameIsActive == true {
         
             if gamePlay.playersTurn == playerX.brick {
+                
+            animatePlayerMove(button: sender)
             sender.setTitle("X", for: .normal)
             gamePlay.updateGameboard(i: sender.tag, player: 1)
                 
@@ -87,15 +89,17 @@ class ViewController: UIViewController {
             
         else {
         
+            animatePlayerMove(button: sender)
             sender.setTitle("O", for: .normal)
             gamePlay.updateGameboard(i: sender.tag, player: 2)
             gamePlay.playersTurn = playerX.brick
             
             }
         }
-        
+
         gamePlay.checkForWinningCombination()
-        gamePlay.printWinner(scoreLabelX: playerXScore, scoreLabelO: playerOScore, gameLabel: gameLabel, playerX: playerX, playerO: playerO)
+        gamePlay.printWinner(scoreLabelX: playerXScore, scoreLabelO: playerOScore,
+                             gameLabel: gameLabel, playerX: playerX, playerO: playerO)
     }
     
     @IBAction func ChangePlayerModeButtonPressed(_ sender: Any) {
@@ -179,38 +183,47 @@ class ViewController: UIViewController {
     //This function takes the randomly selected int from ai-player and matches it to a button.tag. It then changes the title of the button and updates the gameboard in the correct place.
     private func setAiButton(tag: Int) {
         if tag == squareOne.tag {
+            animatePlayerMove(button: squareOne)
             squareOne.setTitle("O", for: .normal)
             gamePlay.updateGameboard(i: squareOne.tag, player: 2)
         }
         if tag == squareTwo.tag {
+            animatePlayerMove(button: squareTwo)
             squareTwo.setTitle("O", for: .normal)
             gamePlay.updateGameboard(i: squareTwo.tag, player: 2)
         }
         if tag == squareThree.tag {
+            animatePlayerMove(button: squareThree)
             squareThree.setTitle("O", for: .normal)
             gamePlay.updateGameboard(i: squareThree.tag, player: 2)
         }
         if tag == squareFour.tag {
+            animatePlayerMove(button: squareFour)
             squareFour.setTitle("O", for: .normal)
             gamePlay.updateGameboard(i: squareFour.tag, player: 2)
         }
         if tag == squareFive.tag {
+            animatePlayerMove(button: squareFive)
             squareFive.setTitle("O", for: .normal)
             gamePlay.updateGameboard(i: squareFive.tag, player: 2)
         }
         if tag == squareSix.tag {
+            animatePlayerMove(button: squareSix)
             squareSix.setTitle("O", for: .normal)
             gamePlay.updateGameboard(i: squareSix.tag, player: 2)
         }
         if tag == squareSeven.tag {
+            animatePlayerMove(button: squareSeven)
             squareSeven.setTitle("O", for: .normal)
             gamePlay.updateGameboard(i: squareSeven.tag, player: 2)
         }
         if tag == squareEight.tag {
+            animatePlayerMove(button: squareEight)
             squareEight.setTitle("O", for: .normal)
             gamePlay.updateGameboard(i: squareEight.tag, player: 2)
         }
         if tag == squareNine.tag {
+            animatePlayerMove(button: squareNine)
             squareNine.setTitle("O", for: .normal)
             gamePlay.updateGameboard(i: squareNine.tag, player: 2)
         }
@@ -258,14 +271,22 @@ class ViewController: UIViewController {
     }
     
     private func addBorderToLabel(view: UILabel) {
-        let bottomBorder = UIView(frame: CGRect(x: -1, y: view.frame.size.height-20, width: view.frame.size.width, height: 1))
-        bottomBorder.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        let bottomBorder = UIView(frame: CGRect(x: -1, y: view.frame.size.height-20, width: view.frame.size.width, height: 1.5))
+        bottomBorder.backgroundColor = .systemBlue
         view.addSubview(bottomBorder)
         
-        let topBorder = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 1.0))
-        topBorder.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        let topBorder = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 1.5))
+        topBorder.backgroundColor = .systemBlue
         view.addSubview(topBorder)
     }
+    
+    private func animatePlayerMove (button: UIButton) {
+        
+        button.titleLabel?.alpha = 0
+        UIView.animate(withDuration: 0.1, animations: {button.titleLabel?.alpha = 1.0})
+        
     }
+}
+
 
 

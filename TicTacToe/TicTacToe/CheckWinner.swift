@@ -8,6 +8,13 @@
 import Foundation
 import UIKit
 
+/*
+ This class handles the game logic. The gameboard is set to all zeros which represents empty
+ squares. I then use the function updateGameboard to changes these numbers to either 1 for X or
+ for O. Winner is set to zero by default and changes to 1 if X wins, 2 if O wins and 3 if there
+ is a tie.
+ */
+
 class CheckWinner {
     
     var winner: Int
@@ -31,6 +38,12 @@ class CheckWinner {
         gameBoard = [0,0,0,0,0,0,0,0,0]
     }
     
+    /*
+     This functions checks all possible winning combinations and, if found, returns a winner.
+     To check if the game is a tie I check if the gameboard contains any zeros, if so I return
+     gameActive = true. Otherwise the game is a tie.
+     I reset the winner to zero each time the method is called.
+     */
     func checkForWinningCombination () -> (Int, Bool) {
         let board = gameBoard
         //var gameIsActive = true
@@ -70,6 +83,7 @@ class CheckWinner {
         return (self.winner, gameIsActive)
     }
     
+    //This method displays the winner-message and adds a win to the winning player.
     func printWinner(scoreLabelX: UILabel, scoreLabelO: UILabel, gameLabel: UILabel, playerX: Player, playerO: Player) {
         
         if winner == 1 {
@@ -93,7 +107,5 @@ class CheckWinner {
             gameLabel.isHidden = false
             gameLabel.text = "The game is a tie"
         }
-        
-        
     }
 }
