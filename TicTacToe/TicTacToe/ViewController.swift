@@ -54,8 +54,8 @@ class ViewController: UIViewController {
     }
     
     /*
-     When square is clicked this function sets the X or O, updates the gameboard and checks
-     if there is a winner. It also handles the play for the comuter in single player.
+     When square is clicked this function sets the buttons title to X or O, updates the gameboard
+     and then checks if there is a winner. It also handles the play for the computer in single player mode.
      */
     @IBAction func buttonSelectedSquare(_ sender: UIButton) {
        

@@ -10,9 +10,9 @@ import UIKit
 
 /*
  This class handles the game logic. The gameboard is set to all zeros which represents empty
- squares. I then use the function updateGameboard to changes these numbers to either 1 for X or
- for O. Winner is set to zero by default and changes to 1 if X wins, 2 if O wins and 3 if there
- is a tie.
+ squares. I then use the method updateGameboard to change these numbers to either 1 for X or
+ 2 for O. The variable Winner is set to zero by default and changes to 1 if X wins, 2 if O wins
+ and 3 if there is a tie.
  */
 
 class CheckWinner {
