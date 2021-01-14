@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E45D0CEE25AF95840042D83E /* onBoarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E45D0CED25AF95840042D83E /* onBoarding.storyboard */; };
+		E45D0CF325AFA3160042D83E /* WalkthroughContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45D0CF225AFA3160042D83E /* WalkthroughContentViewController.swift */; };
+		E45D0CF825AFA5BD0042D83E /* WalkthroughPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45D0CF725AFA5BD0042D83E /* WalkthroughPageViewController.swift */; };
+		E45D0CFD25AFAFDC0042D83E /* WalkthroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45D0CFC25AFAFDC0042D83E /* WalkthroughViewController.swift */; };
 		E477717E2588E4B800417E66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E477717D2588E4B800417E66 /* AppDelegate.swift */; };
 		E47771802588E4B800417E66 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E477717F2588E4B800417E66 /* SceneDelegate.swift */; };
 		E47771822588E4B900417E66 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47771812588E4B900417E66 /* ViewController.swift */; };
@@ -37,6 +41,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E45D0CED25AF95840042D83E /* onBoarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = onBoarding.storyboard; sourceTree = "<group>"; };
+		E45D0CF225AFA3160042D83E /* WalkthroughContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughContentViewController.swift; sourceTree = "<group>"; };
+		E45D0CF725AFA5BD0042D83E /* WalkthroughPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughPageViewController.swift; sourceTree = "<group>"; };
+		E45D0CFC25AFAFDC0042D83E /* WalkthroughViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughViewController.swift; sourceTree = "<group>"; };
 		E477717A2588E4B800417E66 /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E477717D2588E4B800417E66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E477717F2588E4B800417E66 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,10 +91,10 @@
 		E47771712588E4B800417E66 = {
 			isa = PBXGroup;
 			children = (
+				E477717B2588E4B800417E66 /* Products */,
 				E477717C2588E4B800417E66 /* TicTacToe */,
 				E47771932588E4BA00417E66 /* TicTacToeTests */,
 				E477719E2588E4BA00417E66 /* TicTacToeUITests */,
-				E477717B2588E4B800417E66 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -107,11 +115,15 @@
 				E477717F2588E4B800417E66 /* SceneDelegate.swift */,
 				E47771812588E4B900417E66 /* ViewController.swift */,
 				E47771832588E4B900417E66 /* Main.storyboard */,
+				E45D0CED25AF95840042D83E /* onBoarding.storyboard */,
 				E47771862588E4BA00417E66 /* Assets.xcassets */,
 				E47771882588E4BA00417E66 /* LaunchScreen.storyboard */,
 				E477718B2588E4BA00417E66 /* Info.plist */,
 				E4EED4E5258A3C4B009989DD /* CheckWinner.swift */,
 				E4EED4F0258B6661009989DD /* Player.swift */,
+				E45D0CF225AFA3160042D83E /* WalkthroughContentViewController.swift */,
+				E45D0CF725AFA5BD0042D83E /* WalkthroughPageViewController.swift */,
+				E45D0CFC25AFAFDC0042D83E /* WalkthroughViewController.swift */,
 			);
 			path = TicTacToe;
 			sourceTree = "<group>";
@@ -240,6 +252,7 @@
 				E477718A2588E4BA00417E66 /* LaunchScreen.storyboard in Resources */,
 				E47771872588E4BA00417E66 /* Assets.xcassets in Resources */,
 				E47771852588E4B900417E66 /* Main.storyboard in Resources */,
+				E45D0CEE25AF95840042D83E /* onBoarding.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,10 +278,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E47771822588E4B900417E66 /* ViewController.swift in Sources */,
+				E45D0CFD25AFAFDC0042D83E /* WalkthroughViewController.swift in Sources */,
 				E4EED4E6258A3C4B009989DD /* CheckWinner.swift in Sources */,
 				E477717E2588E4B800417E66 /* AppDelegate.swift in Sources */,
+				E45D0CF325AFA3160042D83E /* WalkthroughContentViewController.swift in Sources */,
 				E4EED4F1258B6661009989DD /* Player.swift in Sources */,
 				E47771802588E4B800417E66 /* SceneDelegate.swift in Sources */,
+				E45D0CF825AFA5BD0042D83E /* WalkthroughPageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
