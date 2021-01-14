@@ -35,7 +35,9 @@ class ViewController: UIViewController {
     private let gamePlay = CheckWinner()
     private let playerX = Player(brick: "X")
     private let playerO = Player(brick: "O")
+    private let aiPlayer = AiPlayer(brick: "O")
     private var aiIsActivated = false
+    private var tagNr = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +53,32 @@ class ViewController: UIViewController {
         
         gameLabel.isHidden = true
         
+    }
+    
+    //This function displays the winner-message and adds a win to the winning player.
+    func printWinner() {
+        
+        if gamePlay.winner == 1 {
+            gamePlay.gameIsActive = false
+            gameLabel.isHidden = false
+            gameLabel.text = "\(playerX.name) wins the game"
+            playerX.addWin()
+            playerXScoreLabel.text = String(playerX.wins)
+        }
+        
+        else if gamePlay.winner == 2 {
+            gamePlay.gameIsActive = false
+            gameLabel.isHidden = false
+            gameLabel.text = "\(playerO.name) wins the game"
+            playerO.addWin()
+            playerOScoreLabel.text = String(playerO.wins)
+        }
+        
+        else if gamePlay.winner == 3 {
+            gamePlay.gameIsActive = false
+            gameLabel.isHidden = false
+            gameLabel.text = "The game is a tie"
+        }
     }
     
     /*
@@ -72,8 +100,8 @@ class ViewController: UIViewController {
 
                     if gamePlay.gameIsActive == true {
                         
-                        gamePlay.tagNr = gamePlay.aiLogic()
-                        setAiButton(tag: gamePlay.tagNr)
+                        tagNr = aiPlayer.makeMove(gamePlay: gamePlay)
+                        setAiButton(tag: tagNr)
                         gamePlay.playersTurn = playerX.brick
                     }
                 }
@@ -93,8 +121,7 @@ class ViewController: UIViewController {
             }
             
             gamePlay.checkForWinningCombination()
-            gamePlay.printWinner(scoreLabelX: playerXScoreLabel, scoreLabelO: playerOScoreLabel,
-                                 gameLabel: gameLabel, playerX: playerX, playerO: playerO)
+            printWinner()
         }
     }
     
