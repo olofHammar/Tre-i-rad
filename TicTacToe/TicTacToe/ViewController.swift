@@ -320,6 +320,24 @@ class ViewController: UIViewController {
         button.titleLabel?.alpha = 0
         UIView.animate(withDuration: 0.1, animations: {button.titleLabel?.alpha = 1.0})
     }
+    
+    /*
+      This function loads the tutorial the first time the app is used. I use the
+      userDefaults to save a boolean which only shows the tutorial if bool is true.
+    */
+ 
+    override func viewDidAppear(_ animated: Bool) {
+        
+        if UserDefaults.standard.bool(forKey: "walkthroughHasBeenSeen") {
+            return
+        }
+
+        let storyBoard = UIStoryboard(name: "onBoarding", bundle: nil)
+        if let walkthtroughViewController = storyBoard.instantiateViewController(identifier: "WalkthroughViewController") as? WalkthroughViewController {
+            
+            present(walkthtroughViewController, animated: true, completion: nil)
+        }
+    }
 }
 
 
