@@ -7,7 +7,7 @@
 
 import UIKit
 
-//Here is set the connections and default-content in the tutorial-pages.
+//In this class I set the connections and default-content of the tutorial-pages.
 class WalkthroughContentViewController: UIViewController {
     
     @IBOutlet var headingLabel: UILabel! {

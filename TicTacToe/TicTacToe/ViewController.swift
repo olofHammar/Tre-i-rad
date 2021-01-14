@@ -327,10 +327,11 @@ class ViewController: UIViewController {
     */
  
     override func viewDidAppear(_ animated: Bool) {
-        
+        /*
         if UserDefaults.standard.bool(forKey: "walkthroughHasBeenSeen") {
             return
         }
+ */
 
         let storyBoard = UIStoryboard(name: "onBoarding", bundle: nil)
         if let walkthtroughViewController = storyBoard.instantiateViewController(identifier: "WalkthroughViewController") as? WalkthroughViewController {

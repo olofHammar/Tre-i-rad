@@ -12,18 +12,18 @@ protocol walkthroughPageViewControllerDelegate: class {
 }
 
 
-//This class handles the pageViewControllers scrolling, and sets the content of each page.
+//This class handles the pageViewControllers index when moving between pages, and sets the content of each page.
 class WalkthroughPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     weak var walkthroughDelegate: walkthroughPageViewControllerDelegate?
     
     /*
-     Here is create an array of string containing the text of each page and below I do the
-     same with the images
+     Here I create an array of strings containing the text of each page and below I do the
+     same with the images. Current index is set to 0 so that the walkthrough always start on the first page.
     */
-    var headings = ["Welcome! Lets start with a quick tutorial.", "Click here to restart the game\n or set names to the players.", "Click here to start a new game \n with the current players.","This counter keeps track of the score.", "Click here to reset the scores.", "Click here to switch between\n one and two-player mode."]
+    var headings = ["Welcome to Tic Tac Toe!\n Lets start with a quick tutorial.", "Click here to start a new game\n or set names of the players.", "Click here to start a new game \n with the current players.","This counter keeps track of the score.", "Click here to reset the scores.", "Click here to switch between\n one and two-player mode."]
     
-    var images = ["new_welcome_message", "start_new_game_image", "rematch_image", "keep_track_of_wins_image", "reset_score_image", "change_player_mode_image"]
+    var images = ["welcome_chalkboard", "start_new_game_image", "rematch_image", "keep_track_of_wins_image", "reset_score_image", "change_player_mode_image"]
     
     var currentIndex = 0
     
