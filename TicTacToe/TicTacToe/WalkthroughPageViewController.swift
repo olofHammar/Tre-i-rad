@@ -68,8 +68,7 @@ class WalkthroughPageViewController: UIPageViewController, UIPageViewControllerD
         
     }
     /*
-     This method sets the variables from the WalkthroughContentViewController-class to the values set in the arrays of text and images in this class and connects them to the
-     correct storyboard. 
+     This method sets the variables from the WalkthroughContentViewController-class to the values set in the arrays of text and images in this class and connects them to the correct storyboard on the correct index number. 
      */
     func contentViewController (at index: Int) -> WalkthroughContentViewController? {
         if index < 0 || index >= headings.count {

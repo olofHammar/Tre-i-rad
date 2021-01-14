@@ -24,10 +24,12 @@ class WalkthroughViewController: UIViewController, walkthroughPageViewController
     
     var walkthroughPageViewController: WalkthroughPageViewController?
     
+    //This function dismisses the walkthrough.
     @IBAction func skipButtonTapped(sender: UIButton) {
         UserDefaults.standard.set(true, forKey: "walkthroughHasBeenSeen")
         dismiss(animated: true, completion: nil)
     }
+    
     
     @IBAction func nextButtonTapped(sender: UIButton) {
         if let index = walkthroughPageViewController?.currentIndex {
